@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="edu.hebut.jusha.pojo">
+	<class name="Donation" table="_donation" dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="id" column="donation_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="account" column="account"></property>
+
+		<!-- 配置关联信息 -->
+		<many-to-one name="item" class="Item" cascade="none">
+			<column name="item_id"></column>
+		</many-to-one>
+		<many-to-one name="appointment" class="Appointment" cascade="none">
+			<column name="appointment_id"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

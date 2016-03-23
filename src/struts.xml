@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.action.extension" value="action" />
+    <!-- 指定上传文件的临时存储路径 -->
+    <constant name="struts.multipart.saveDir" value="/temp"/>
+	
+	<!-- 
+	<package name="per-package" extends="struts-default">
+		<interceptors>
+			<interceptor name="permissionInterceptor" class="com.giraffe.interceptor.PermissionInterceptor"></interceptor>
+			<interceptor-stack name="myInterceptors">
+				<interceptor-ref name="permissionInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+	</package>
+	
+	<package name="user" namespace="/user" extends="per-package">
+		<action name="user_*" class="com.giraffe.entity.User" method="{1}">
+			<interceptor-ref name="myInterceptors"></interceptor-ref>
+			<result name="success">/user/admin_listUsers.jsp</result>
+			<result name="findUser">/user/admin_findUser.jsp</result>
+			<result name="download" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputStream">inputStream</param>
+				<param name="contentDisposition">attachment;filename=${introFileName}</param>
+			</result>
+			<result name="addOK" type="redirectAction">user_listUsers</result>
+			<result name="updateOK">/user/admin_updateUser.jsp</result>
+			<result name="saveOK" type="redirectAction">user_listUsers</result>
+			<result name="deleteOK" type="redirectAction">user_listUsers</result>
+			<result name="login">/login.jsp</result>
+			<result name="message">/user/admin_message.jsp</result>
+			<result name="input">/user/admin_{1}.jsp</result>
+			<result name="error">/user/admin_error.jsp</result>
+		</action>
+	</package>
+	 -->
+	 
+	 <package name="admin_service" namespace="/admin" extends="json-default">
+	 	<!-- Start Demands -->
+	 	<action name="adminPage" class="edu.hebut.jusha.controller.AdminAction" method="showAdminPage">
+	 		<result name="success">/admin/admin.jsp</result>
+	 		<result name="error" type="redirect">/login.jsp</result>
+	 	</action>
+	 	<action name="showDemandsInfo" class="edu.hebut.jusha.controller.DemandsAction" method="showDemandsInfo">
+	 		<result name="success">/admin/_demands.jsp</result>
+	 		<result name="error">/admin/message.jsp</result>
+	 	</action>
+	 	<action name="showMkAppointmentPage" class="edu.hebut.jusha.controller.DemandsAction" method="showMkAppointmentPage">
+	 		<result name="success">/admin/_demands_mkAppointment.jsp</result>
+	 		<result name="error">/admin/message.jsp</result>
+	 	</action>
+	 	<action name="mkAppointment" class="edu.hebut.jusha.controller.DemandsAction" method="mkAppointment">
+	 		<result type="json">
+	 			<param name="excludeNullProperties">false</param>
+	 		</result>
+	 	</action>
+	 	<!-- End Demands -->
+	 	<!-- Start Appointment -->
+	 	<action name="showAppointmentInfo" class="edu.hebut.jusha.controller.AppointmentAction" method="showAppointmentInfo">
+	 		<result name="success">/admin/_appointment_info.jsp</result>
+	 		<result name="error">/admin/message.jsp</result>
+	 	</action>
+	 </package>
+	
+	<!-- 处理用户登录|注册|注销的业务 -->
+	<package name="foundation" namespace="/" extends="json-default" >
+		<action name="login" class="edu.hebut.jusha.controller.LoginAction" method="login">
+			<result type="json">
+				<param name="excludeNullProperties">false</param>
+			</result>
+		</action>
+		<action name="regist" class="edu.hebut.jusha.controller.LoginAction" method="regist">
+			<result type="json">
+				<param name="excludeNullProperties">false</param>
+			</result>
+		</action>
+		<action name="logout" class="edu.hebut.jusha.controller.LoginAction" method="logout">
+			<result type="redirect" name="success">/index.jsp</result>
+		</action>
+	</package>
+</struts>
