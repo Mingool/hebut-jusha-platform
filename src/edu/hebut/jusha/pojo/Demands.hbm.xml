@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="edu.hebut.jusha.pojo">
+	<class name="Demands" table="_demands" dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="id" column="demands_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="title"></property>
+		<property name="description"></property>
+		<property name="expressNumber"></property>
+		<property name="powertyArea"></property>
+		<property name="status"></property>
+		
+		<!-- 配置关联信息 -->
+		<many-to-one name="user" class="User" cascade="none">
+			<column name="user_id"></column>
+		</many-to-one>
+		<set name="itemSet" inverse="false" cascade="all" fetch="select" lazy="extra">
+			<key column="demands_id"></key>
+			<one-to-many class="Item" />
+		</set>
+		<set name="appointmentSet" inverse="false" cascade="all" fetch="select" lazy="extra">
+			<key column="demands_id"></key>
+			<one-to-many class="Appointment" />
+		</set>
+	</class>
+</hibernate-mapping>

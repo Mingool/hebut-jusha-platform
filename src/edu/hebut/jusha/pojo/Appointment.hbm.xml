@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="edu.hebut.jusha.pojo">
+	<class name="Appointment" table="_appointment" dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="id" column="appointment_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="isFinished" column="isFinished"></property>
+		<property name="startTime" update="false" not-null="false">
+			<column name="start_time" not-null="false" sql-type="datetime"></column>
+		</property>
+		<property name="finishTime" update="false" not-null="false">
+			<column name="finish_time" not-null="false" sql-type="datetime"></column>
+		</property>
+		<property name="appointmentNumber" column="appointment_num" not-null="false"></property>
+
+		<!-- 配置关联信息 -->
+		<set name="donationSet" inverse="false" cascade="all" fetch="select" lazy="extra">
+			<key column="appointment_id"></key>
+			<one-to-many class="Donation" />
+		</set>
+		<many-to-one name="user" class="User" cascade="none">
+			<column name="user_id"></column>
+		</many-to-one>
+		<many-to-one name="demands" class="Demands" cascade="none">
+			<column name="demands_id"></column>
+		</many-to-one>
+	</class>
+</hibernate-mapping>
