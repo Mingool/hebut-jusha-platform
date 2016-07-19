@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="jusha_platform">
+    <wb-module deploy-name="xjusha">
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="context-root" value="/jusha_platform"/>
-        <property name="java-output-path" value="/jusha_platform/WebRoot/WEB-INF/classes"/>
+        <property name="java-output-path" value="/xjusha/WebRoot/WEB-INF/classes"/>
     </wb-module>
 </project-modules>
