@@ -13,8 +13,8 @@ jquery-mobile Struts2 Hibernate mysql5
 
 首页
 
-<img src="https://github.com/yogyue/hebut-jusha-platform/blob/master/document/jusha-1.png" width = "50%" alt="首页" align=center />
+<img src="https://github.com/yogyue/hebut-jusha-platform/blob/master/document/jusha-1.png" height = "50%" alt="首页" align=center />
 
 登录后菜单页
 
-<img src="https://github.com/yogyue/hebut-jusha-platform/blob/master/document/jusha-2.png" width = "50%" alt="菜单页" align=center />
+<img src="https://github.com/yogyue/hebut-jusha-platform/blob/master/document/jusha-2.png" height = "50%" alt="菜单页" align=center />
